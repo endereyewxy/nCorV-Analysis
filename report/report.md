@@ -31,7 +31,7 @@ $$
 
 ## 结果及分析
 
-<img src="/home/endereye/Workspace/nCorV-Analysis/report/simulate.svg" />
+<img src="simulate.svg" />
 
 ## 参考文献
 
