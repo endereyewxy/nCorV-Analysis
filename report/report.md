@@ -9,7 +9,7 @@
 
 - 其次，我们通过由GitHub项目[Wuhan-2019-nCoV](https://github.com/canghailan/Wuhan-2019-nCoV)<sup>2</sup>所开放的数据接口获取了过去40天意大利每日的新增确诊人数、新增死亡人数、新增治愈人数等具体数据信息，经初步观察后选取了确诊数量开始明显增长的2月22日-3月23日的数据用作拟合比对，并绘制出日期(以2月22日作为第0日)-确诊数量(单位：人)图如下：
 
-![image1](D:\Resource\github\nCorV19\report\date-infe.png)
+![image1](date-infe.png)
 
 - 借助Matlab2019内置的Curve Fitting工具对其进行暴力拟合，从而获得一个可以表示其变化趋势的函数结果
 
@@ -30,7 +30,7 @@
 
   - 拟合所得图像如下：
 
-![image1](D:\Resource\github\nCorV19\report\GF.png)
+![image2](GF.png)
 
 - 结合以上图像可知，确诊人数随时间变化趋势为先上升，然后速度逐渐下降达到拐点，即极大值点，之后保持下降趋势，这与传统的传染病模型的结果保持一致，于是我们考虑以传统的传染病模型作为基础加以改进，从而实现对于意大利确诊人数的分析与预测。
 
