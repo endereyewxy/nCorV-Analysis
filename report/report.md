@@ -1,5 +1,9 @@
 # 意大利新型冠状病毒发展预测
 
+##摘要
+
+本文通过建立SEIR传染病模型，通过考虑病毒潜伏期传染能力，隔离时间，发病时间，隔离速率等因素，运用回归分析，用matlab建立微分方程，寻求解析解，运用梯度下降法对参数进行优化，从而使预测与现有数据实现更好的拟合，解决了新型冠状病毒疫情在意大利的预测问题。
+
 ## 问题重述
 
 ### 问题背景
@@ -76,6 +80,8 @@
 经过调查分析目前的新闻报导以及相关论文资料，我们发现目前研究结果表明：新型冠状病毒的康复者对于该病毒的免疫力不会消除；且新型冠状病毒感染者具有潜伏期，潜伏期的感染者具有传染性。因此SEIR模型比较符合这次新型冠状病毒的疫情的情况。于是我们选择以传统的SEIR模型为基础，开展进一步研究。
 
 ### 资料分析
+
+经典SEIR模型将人群分为S (Susceptible，易感者)，I (Infected，感染者)，E (Exposed，潜伏者)和R (Recovered，康复人群)。该模型还假设人群中所有个体都有机率被感染，当被感染个体痊愈后，会产生抗体，即康复人群R不会再被感染。考虑到防治传染病的隔离措施，模型中的人群组分新增Sq (隔离易感者)，Eq (隔离潜伏者)和Iq (隔离感染者)。鉴于隔离感染者会立即送往定点医院隔离治疗，因此这部分人群在本模型中全部转化为住院患者H 代替。进而，原人群S，I，E 则分别指隔离措施遗漏的易感者、感染者和潜伏者。隔离易感者解除隔离后重新转变为易感者，而感染者和潜伏者均有不同程度的能力感染易感者，使其转化为潜伏者。
 
 ## 模型假设
 
@@ -160,7 +166,9 @@ $$
 
 ## 参考文献
 
-1. Biao Tang, Xia Wang, Qian Li, et al. Estimation of the transmission risk of 2019-nCov and its implication for public health interventions. 2020, Doi: 10.2139/ssrn.3525558
+1.Estimation of the transmission risk of 2019-nCov and its implication for public health interventions Biao Tang , Xia Wang , Qian Li , Nicola Luigi Bragazzi , Sanyi Tang , Yanni Xiao , Jianhong Wu
+
+2.2019-nCoV新型冠状病毒肺炎SEIR传播动力学模型分析  曹盛力 冯沛华 时朋朋 
 
 ## 附录
 
