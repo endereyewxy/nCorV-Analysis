@@ -103,6 +103,7 @@ $$
 
 ## 模型建立及求解
 
+根据原理，可建立微分方程组：
 $$
 \left\{
 \begin{split}
@@ -110,6 +111,7 @@ $$
 \frac{dE}{dt} &= c \beta (1 - q) S (I + \theta E) - \sigma E \\
 \frac{dI}{dt} &= \sigma E - (\delta_I + \alpha + \gamma_I) I \\
 \frac{dS_q}{dt} &= c q (1 - \beta) S (I + \theta E) - \delta_q E_q \\
+\frac{dE_q}{dt} &= c q \beta S (I + \theta E) - \delta_q E_q \\
 \frac{dH}{dt} &= \delta_I I + \delta_q E_q - (\alpha + \gamma_H) H \\
 \frac{dR}{dt} &= \gamma_I I + \gamma_H H \\
 \frac{dD}{dt} &= \alpha(I + H)
@@ -117,7 +119,24 @@ $$
 \right.
 $$
 
+其中，$ \sigma $ 为潜伏着转化为感染者的速率， $ \alpha $ 为死亡率（同时作用于感染者和隔离治疗人员）， $ \delta_I $ 和 $ \delta_q $ 分别为感染者和潜伏者被隔离的速率， $ \gamma_I $ 和 $ \gamma_H $ 分别为感染者和隔离治疗人员康复的速率。
 
+方便起见，该微分方程组不进行数值求解，而是以 $ t = 0.01 $ 天为间隔进行迭代，即：
+$$
+\left\{
+\begin{split}
+S_{i + 1} &= S_i + \frac{dS}{dt} \cdot t \\
+E_{i + 1} &= E_i + \frac{dE}{dt} \cdot t \\
+I_{i + 1} &= I_i + \frac{dI}{dt} \cdot t \\
+S_{q(i + 1)} &= S_{qi} + \frac{dS_q}{dt} \cdot t \\
+E_{q(i + 1)} &= E_{qi} + \frac{dE_q}{dt} \cdot t \\
+H_{i + 1} &= H_i + \frac{dH}{dt} \cdot t \\
+R_{i + 1} &= R_i + \frac{dR}{dt} \cdot t \\
+D_{i + 1} &= D_i + \frac{dD}{dt} \cdot t \\
+\end{split}
+\right.
+$$
+其中 $ S_i $ 为第 $ i $ 次迭代的值， $ E_i, I_i, S_{qi}, E_{qi}, H_i, R_i, D_i $ 类似。
 
 ## 结果及分析
 
