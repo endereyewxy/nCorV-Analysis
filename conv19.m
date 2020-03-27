@@ -1,29 +1,34 @@
-% SEIR Transmission dynamics model of 2019 nCoV coronavirus with considering the weak infectious ability and changes in latency duration % %%%%%
+% c = 2.75; beta = 1.8e-9;
+% 
+% delta_I0 = 0.02; delta_q = 0.1;
+% 
+% gama_I = 0.012; gama_H = 0.02;
+% 
+% q = 10e-7; alpha = 0.1008;
+% 
+% theta = 1; lam = 1 / 14;
+% 
+% T = 40; t = 1; NN = T / t;
+c=2.75;beta=1.74e-9;
 
-%Shi Pengpeng, Cao Shengli, Feng Peihua, Completed on Jan 5th, first released on Jan 7th % %
+delta_I0=0.1; delta_q=0.13;
 
-%This latest modified version was released on Feb. 10th, 2020 % %
+gama_I=0.007; gama_H=0.02;
 
-%Model parameters
+q=2e-7; alpha=1.2405e-4;
 
-c = 2.6; beta = 1.74e-9;
+theta=0.75; lam=1/14;
 
-delta_I0 = 0.13; delta_q = 0.13;
-
-gama_I = 0.0035; gama_H = 0.007;
-
-q = 10e-7; alpha = 0.0001;
-
-theta = 1; lam = 1 / 14;
-
-T = 40; t = 0.01; NN = T / t;
+T=60; t=0.01; NN=T/t;
 
 % Initial values
 
-S = 5917 * 1e4; E = 4007; I = 524 * 1.5; Sq = 2776;
+% S = 5917 * 1e4; E = 4007; I = 524 * 1.5; Sq = 2776;
+% 
+% Eq = 400; H = I + Eq; R = 31; De = 24; sigma = 1 / 7;
 
-Eq = 400; H = I + Eq; R = 31; De = 24; sigma = 1 / 7;
-
+ S = 60481283; E = 620; I = 33 * 2; Sq = 0;
+ Eq = 2; H = I + Eq; R = 2; sigma = 1 / 7;
 AA = [S E I Sq Eq H R];
 
 for ii = 1:NN
@@ -88,8 +93,23 @@ plot(0:T, [Infected Cured])
 
 hold on
 
-data_Infected = [524 658 958 1303 2567 3349 4334 5486 6738 8565 10532 12712 15679 18445 20677 23139 24881 26965 28532 29659]';
+Data = importdata('意大利.csv');
 
-data_Cured = [31 32 42 44 47 80 90 116 166 215 295 396 520 671 817 1115 1439 1795 2222 2639]';
+data_Infected = Data.data(:, 1);
 
-plot([1:length(data_Infected)]'-1,[data_Infected data_Cured],' * ')
+data_Cured = Data.data(:, 3);
+
+loss1 = 0;
+for i = 1:31
+    loss1 = loss1 + (data_Infected(i,1) - Infected(i,1))^2;
+end
+loss1 = loss1/31
+
+loss2 = 0;
+for i = 1:31
+    loss2 = loss2 + (data_Cured(i,1) - Cured(i,1))^2;
+end
+loss2 = loss2/31
+
+
+plot([1:length(data_Infected)],[data_Infected data_Cured],' * ')
