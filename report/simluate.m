@@ -40,6 +40,7 @@ for ii = 1 : NN
     else
         delta_I = delta_I0;
     end
+    %delta_I = delta_I0;
     
     dS  = -(beta * c + c * q * (1 - beta)) * S * (I + theta * E) + lam * Sq;
     dE  = beta * c * (1 - q) * S * (I + theta * E) - sigma * E;
