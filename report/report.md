@@ -53,7 +53,6 @@
 - 拟合所得图像如下：
 
 ![image2](GF.svg)
-
 - 结合以上图像可知，确诊人数随时间变化趋势为先上升，然后速度逐渐下降达到拐点，即极大值点，之后保持下降趋势，这与传统的传染病模型的结果保持一致，于是我们考虑以传统的传染病模型作为基础加以改进，从而实现对于意大利确诊人数的分析与预测。
 
 ### 传统模型
@@ -104,6 +103,12 @@ q &= 隔离比例\\
 \sigma &= 潜伏者向感染者的转化速率（即\frac{1}{潜伏期时长（天）}）
 \end{split}
 $$
+
+
+
+
+
+
 
 ### 变量符号说明
 
@@ -204,6 +209,10 @@ $$
 5. Qun Li, Jiangxiong Hu, Min Kang, et al. Transmission dynamics of 2019 novel coronavirus-infected pneumonia. The new England Journal of Medicine. January 30, 2020; doi: 10.1056/NEJMoa2001316
 6. Xintian Xu, Ping Chen, Jingfang Wang, et al. Evolution  of the novel coronavirus from the ongoing Wuhan outbreak and modeling  of its spike protein for risk of human transmission
 
+
+
+
+
 ## 附录
 
 ### 程序代码
@@ -296,6 +305,10 @@ title 意大利疫情预测
 xlabel 天
 ylabel 人
 ```
+
+
+
+
 
 ### 拟合数据
 
