@@ -1,13 +1,13 @@
-# 意大利新型冠状病毒发展预测
-
+# 综合实践报告 意大利新冠病毒确诊感染者数量预测
 ## 摘要
-
 本文通过建立改良型SEIR传染病模型，考虑病毒潜伏期传染能力，隔离时间，发病时间，隔离速率等多方面影响因素，建立微分方程组，借助Matlab进行迭代计算从而实现与当前数据的拟合，并进一步对疫情后续发展（包括确诊人数变化）做出预测，解决了新型冠状病毒疫情在意大利的发展预测问题。
 
+## 目录
+[toc]
+<div STYLE="page-break-after: always;"></div>
 ## 问题重述
 
 ### 问题背景
-
 2019新型冠状病毒（2019-nCoV），2020年1月12日被世界卫生组织命名。冠状病毒是一个大型病毒家族，已知可引起感冒以及中东呼吸综合征（MERS）和严重急性呼吸综合征（SARS）等较严重疾病。新型冠状病毒是以前从未在人体中发现的冠状病毒新毒株。
 
 2019年12月以来，湖北省武汉市持续开展流感及相关疾病监测，发现多起病毒性肺炎病例，均诊断为病毒性肺炎/肺部感染。
@@ -22,7 +22,9 @@
 
 经过资料收集与探讨，本组选择意大利作为确诊病人数预测与分析的目标国家。
 
+<div STYLE="page-break-after: always;"></div>
 ## 问题分析
+
 ### 数据采集与初步分析
 
 - 首先，我们通过[百度疫情实时大数据报告](https://voice.baidu.com/act/newpneumonia/newpneumonia/?from=osari_pc_3)<sup>[1]</sup>获取最新意大利疫情数据以供参考；
@@ -84,6 +86,7 @@
 
 经典SEIR模型将人群分为 $ S $ （Susceptible，易感者）， $ I $ （Infected，感染者），$ E $ （Exposed，潜伏者）和 $ R $ （Recovered，康复人群）。该模型还假设人群中所有个体都有机率被感染，当被感染个体痊愈后，会产生抗体，即康复人群 $ R $ 不会再被感染。考虑到防治传染病的隔离措施，模型中的人群组分新增 $ S_q $ （隔离易感者）， $ E_q $ （隔离潜伏者）和 $ I_q $ （隔离感染者）<sup>[3]</sup>。鉴于隔离感染者会立即送往定点医院隔离治疗，因此这部分人群在本模型中全部转化为住院患者 $ H $ 代替。进而，原人群 $ S $ ， $ I $ ， $ E $ 则分别指隔离措施遗漏的易感者、感染者和潜伏者。隔离易感者解除隔离后重新转变为易感者，而感染者和潜伏者均有不同程度的能力感染易感者，使其转化为潜伏者。
 
+<div STYLE="page-break-after: always;"></div>
 ## 模型假设
 
 ### 参数符号说明
@@ -103,12 +106,6 @@ q &= 隔离比例\\
 \sigma &= 潜伏者向感染者的转化速率（即\frac{1}{潜伏期时长（天）}）
 \end{split}
 $$
-
-
-
-
-
-
 
 ### 变量符号说明
 
@@ -134,6 +131,7 @@ $$
 - 不考虑由于环境或是医疗系统承载能力有限带来的影响；
 - 所有隔离感染者立即送至医院接受住院隔离治疗。
 
+<div STYLE="page-break-after: always;"></div>
 ## 模型建立及求解
 
 ### 微分方程组
@@ -199,7 +197,7 @@ $$
 根据预测结果，感染人数将在第 $ 52 $ 天，即4月12日达到顶峰，约 $ 15.8 $ 万人。此后，感染人数逐步下降，疫情将逐渐得到控制。
 
 由于政府采取积极防控措施、其他国家援助等因素影响，实际情况可能优于本模型所预计的情况。
-
+<div STYLE="page-break-after: always;"></div>
 ## 参考文献
 
 1. 百度疫情实时大数据报告，https://voice.baidu.com/act/newpneumonia/newpneumonia/?from=osari_pc_3
@@ -209,10 +207,11 @@ $$
 5. Qun Li, Jiangxiong Hu, Min Kang, et al. Transmission dynamics of 2019 novel coronavirus-infected pneumonia. The new England Journal of Medicine. January 30, 2020; doi: 10.1056/NEJMoa2001316
 6. Xintian Xu, Ping Chen, Jingfang Wang, et al. Evolution  of the novel coronavirus from the ongoing Wuhan outbreak and modeling  of its spike protein for risk of human transmission
 
-
-
-
-
+## 小组成员
+- 汪啸宇
+- 魏睿
+- 谯景毅
+<div STYLE="page-break-after: always;"></div>
 ## 附录
 
 ### 程序代码
@@ -302,14 +301,10 @@ plot(1 : length(rI), [rI, rR, rD],'x');
 
 legend 预计感染 预计治愈 预计死亡 实际感染 实际治愈 实际死亡
 title 意大利疫情预测
-xlabel 天
-ylabel 人
+xlabel 日期
+ylabel 确诊患者数量
 ```
-
-
-
-
-
+<div STYLE="page-break-after: always;"></div>
 ### 拟合数据
 
 ```matlab
